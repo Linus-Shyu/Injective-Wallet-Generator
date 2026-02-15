@@ -8,6 +8,8 @@ A **web app** (and optional desktop build) to generate [Injective](https://injec
 
 All key generation runs on your machine; nothing is sent to any server.
 
+*Pair Extraordinaire: co-authored commits welcome.*
+
 ---
 
 ## Features
