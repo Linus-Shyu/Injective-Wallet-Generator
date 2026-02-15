@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { invoke } from "@tauri-apps/api/core";
 
 interface Wallet {
   private_key: string;
@@ -12,7 +11,7 @@ const loading = ref(false);
 const message = ref("Ready to secure the future.");
 const copiedField = ref<"address" | "private_key" | null>(null);
 
-async function copyToClipboard(text: string): Promise<void>{
+async function copyToClipboard(text: string): Promise<void> {
   try {
     await navigator.clipboard.writeText(text);
     copiedField.value = text === wallet.value?.address ? "address" : "private_key";
@@ -23,18 +22,19 @@ async function copyToClipboard(text: string): Promise<void>{
   } catch {
     message.value = "Copy failed.";
   }
-
 }
+
 async function generateWallet() {
   loading.value = true;
   message.value = "Executing cryptographic derivation...";
 
   try {
-    const result = await invoke<Wallet>("generate_injective_wallet");
-    wallet.value = result;
+    const wasm = await import("injective_wallet");
+    const json = wasm.generate_injective_wallet();
+    wallet.value = JSON.parse(json) as Wallet;
     message.value = "Wallet successfully initialized.";
   } catch (err) {
-    message.value = "Error: " + err;
+    message.value = "Error: " + (err instanceof Error ? err.message : String(err));
   } finally {
     loading.value = false;
   }
@@ -44,13 +44,21 @@ async function saveToFile() {
   if (!wallet.value) return;
 
   try {
-    const response = await invoke<string>("save_wallet_to_desktop", {
-      address: wallet.value.address,
-      privateKey: wallet.value.private_key,
-    });
-    message.value = response;
+    const wasm = await import("injective_wallet");
+    const content = wasm.get_wallet_export_text(
+      wallet.value.address,
+      wallet.value.private_key
+    );
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "injective_wallet.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+    message.value = "Wallet saved (download started).";
   } catch (err) {
-    message.value = "Export failed: " + err;
+    message.value = "Export failed: " + (err instanceof Error ? err.message : String(err));
   }
 }
 </script>

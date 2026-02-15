@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Wasm crate build (keep wasm/pkg for npm)
+wasm/target
+wasm/wasm
