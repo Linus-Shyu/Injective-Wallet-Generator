@@ -1,0 +1,215 @@
+/**
+ * Injective design system tokens and base styles
+ * Ref: injective.com
+ */
+:root {
+  /* Primary */
+  --Primary-Ocean-Main: #4d3dff;
+  --Primary-Ocean-Tint: #5359f9;
+  --Primary-Snow-Main: #eeefff;
+  --Primary-Snow-Tint: #d7dbff;
+
+  /* Secondary */
+  --Secondary-Midnight-900: #0b182b;
+  --Secondary-Midnight-800: #182e4b;
+  --Secondary-Midnight-700: #193d6d;
+
+  /* Tertiary */
+  --Tertiary-Lime-Main: #ceffc8;
+  --Tertiary-Coral-Main: #ffa36e;
+  --Tertiary-Cinnamon-Main: #7a4515;
+  --Tertiary-Sand-Main: #d5c498;
+
+  /* Shade Sky */
+  --Shade-Sky-50: #fcfdff;
+  --Shade-Sky-100: #ebf0ff;
+  --Shade-Sky-200: #d4e0ff;
+  --Shade-Sky-300: #c2d3ff;
+  --Shade-Sky-400: #aac2ff;
+  --Shade-Sky-500: #87a7f3;
+  --Shade-Sky-600: #6c91e7;
+  --Shade-Sky-700: #4669b9;
+  --Shade-Sky-800: #314b87;
+  --Shade-Sky-900: #182e4b;
+
+  /* Shade Grey */
+  --Shade-Grey-100: #f8f9fa;
+  --Shade-Grey-200: #eeeff1;
+  --Shade-Grey-300: #dbdde1;
+  --Shade-Grey-400: #c5c8cd;
+  --Shade-Grey-500: #a5abb6;
+  --Shade-Grey-600: #7e838c;
+  --Shade-Grey-700: #676c75;
+  --Shade-Grey-800: #51545b;
+  --Shade-Grey-900: #3b3e43;
+
+  /* Web / Brand */
+  --Web-INJ-White: #fff;
+  --Web-INJ-Black: #0b182b;
+  --Brand-INJ-Ocean: #4d3dff;
+  --Brand-INJ-Coral: #ffa36e;
+
+  /* Layout */
+  --container-max: 1440px;
+  --radius-s: 16px;
+  --radius-m: 24px;
+  --radius-l: 32px;
+  --radius-xl: 96px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--Secondary-Midnight-900);
+}
+
+body {
+  margin: 0;
+  line-height: 1.5;
+  overflow-x: clip;
+}
+
+/* Typography scale (Injective) */
+.text-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 12px;
+  text-transform: uppercase;
+  color: var(--Secondary-Midnight-900);
+}
+
+.text-h1 {
+  font-size: clamp(2.5rem, 6vw, 120px);
+  font-weight: 300;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.text-h2 {
+  font-size: clamp(2rem, 4vw, 88px);
+  font-weight: 300;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.text-h4 {
+  font-size: clamp(1.5rem, 3vw, 56px);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.text-body-1 {
+  font-size: clamp(1rem, 1.5vw, 32px);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.text-body-5 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.text-label-whyte-1 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.text-label-whyte-2 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Buttons (Injective style) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 24px;
+  border-radius: var(--radius-l);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  border: none;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 12px 24px;
+  }
+}
+
+.btn-primary {
+  background-color: var(--Primary-Ocean-Main);
+  color: var(--Web-INJ-White);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--Shade-Sky-900);
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--Secondary-Midnight-900);
+  border: 1px solid var(--Shade-Sky-200);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--Shade-Grey-300);
+  border-color: var(--Secondary-Midnight-900);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Cards */
+.card {
+  background: var(--Web-INJ-White);
+  border: 1px solid var(--Shade-Sky-200);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+}
+
+.card-elevated {
+  box-shadow: 0 32px 32px rgba(11, 24, 43, 0.08);
+}
