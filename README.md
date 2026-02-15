@@ -1,6 +1,3 @@
----
-
-```markdown
 # Injective Keygen
 
 A local desktop app to generate [Injective](https://injective.com) wallets. Built with **Tauri 2** (Rust) and **Vue 3**, with an Injective-inspired UI.
@@ -72,5 +69,3 @@ rust-vue-demo/
 ## Disclaimer
 
 For local wallet creation only. Secure your private keys; use at your own risk.
-```
-
